@@ -4,6 +4,8 @@ using UnityEngine;
 public class CarEngine : MonoBehaviour {
 
     public string carName;
+    public int carId;
+
     public int priority = 0;
     public Transform[] paths;
     public List<Transform> nodes;
@@ -33,10 +35,10 @@ public class CarEngine : MonoBehaviour {
 
     public bool willTurn = false;
     private bool havePriority = false;
-    public delegate void EnterIntersection();
+    public delegate void EnterIntersection(int id);
     public static event EnterIntersection OnEnterInterSection;
 
-    public delegate void ExitIntersection();
+    public delegate void ExitIntersection(int id);
     public static event ExitIntersection OnExitInterSection;
 
 	// Use this for initialization
@@ -113,7 +115,7 @@ public class CarEngine : MonoBehaviour {
             print(carName + ": I entered the intersection");
             inIntersection = true;
             if (OnEnterInterSection != null) {
-                OnEnterInterSection();
+                OnEnterInterSection(carId);
             }
         }
 
@@ -124,7 +126,7 @@ public class CarEngine : MonoBehaviour {
             if (OnExitInterSection != null)
             {
                 print(carName +": haha! I existed the interseciton");
-                OnExitInterSection();
+                OnExitInterSection(carId);
             }
         }
     }
@@ -144,12 +146,12 @@ public class CarEngine : MonoBehaviour {
                 } else {
                     print("Car " + carName + ": Oh noes i can't drive!");
                     isWaiting = true;
-                    CarEngine.OnExitInterSection += () =>
-                    {
-                        print("We can drive again!");
-                        canDrive = true;
-                        isWaiting = false;
-                        havePriority = true;
+                    CarEngine.OnExitInterSection += (id) =>
+                    {   if (ce.carId == id) {
+                            print("We can drive again!");
+                            isWaiting = false;
+                            havePriority = true;    
+                        }
                     };
                 }
 
@@ -161,7 +163,7 @@ public class CarEngine : MonoBehaviour {
         TrafficLight tl = trafficLight.GetComponent<TrafficLight>();
 
         // If we are close and the traffic light is red, then we cannot drive
-        if (distanceUntilIntersection < 17 && tl.allow == false && !inIntersection) {
+        if (distanceUntilIntersection < 17 && tl.allow == false) {
             trafficLightOk = false;
         } else {
             trafficLightOk = true;

@@ -576,6 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carName: North
+  carId: 0
   priority: 0
   paths:
   - {fileID: 966796787}
@@ -604,12 +605,13 @@ MonoBehaviour:
   intersection: {fileID: 620921996}
   centerOfMass: {x: 0, y: -2.81, z: 0}
   trafficLight: {fileID: 852807118}
-  active: 0
+  active: 1
   secondsUntilIntersection: 100
-  onComingCar: {fileID: 0}
+  onComingCar: {fileID: 1905041633}
   distanceUntilIntersection: 100
   inIntersection: 0
   isWaiting: 0
+  trafficLightOk: 0
   willTurn: 0
 --- !u!54 &96229823
 Rigidbody:
@@ -1801,6 +1803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carName: East
+  carId: 1
   priority: 5
   paths:
   - {fileID: 431777859}
@@ -1835,6 +1838,7 @@ MonoBehaviour:
   distanceUntilIntersection: 100
   inIntersection: 0
   isWaiting: 0
+  trafficLightOk: 0
   willTurn: 0
 --- !u!54 &299931258
 Rigidbody:
@@ -8116,6 +8120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carName: West
+  carId: 3
   priority: 10
   paths:
   - {fileID: 184118854}
@@ -8150,6 +8155,7 @@ MonoBehaviour:
   distanceUntilIntersection: 100
   inIntersection: 0
   isWaiting: 0
+  trafficLightOk: 0
   willTurn: 0
 --- !u!54 &1238373790
 Rigidbody:
@@ -12441,7 +12447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carName: South
-  priority: 0
+  carId: 2
+  priority: 10
   paths:
   - {fileID: 1651841948}
   - {fileID: 1484942788}
@@ -12469,12 +12476,13 @@ MonoBehaviour:
   intersection: {fileID: 620921996}
   centerOfMass: {x: 0, y: -2.81, z: 0}
   trafficLight: {fileID: 1066704865}
-  active: 0
+  active: 1
   secondsUntilIntersection: 100
-  onComingCar: {fileID: 0}
+  onComingCar: {fileID: 96229817}
   distanceUntilIntersection: 100
   inIntersection: 0
   isWaiting: 0
+  trafficLightOk: 0
   willTurn: 0
 --- !u!54 &1905041639
 Rigidbody:
