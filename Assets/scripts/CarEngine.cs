@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CarEngine : MonoBehaviour {
 
-    public Transform path;
+    public Transform[] paths;
     public List<Transform> nodes;
     private int currentNode = 0;
     public float maxSteerAngle = 45f;
@@ -20,12 +19,19 @@ public class CarEngine : MonoBehaviour {
     private float targetSteerAngle = 0;
     public GameObject trafficLight;
     private bool canDrive = false;
+    public bool active = true;
 
 	// Use this for initialization
 	void Start () {
 
         GetComponent<Rigidbody>().centerOfMass = centerOfMass;
         nodes = new List<Transform>();
+
+        int rnd = decimal.ToInt32(Random.Range(0, paths.Length - 1));
+        Transform path = paths[rnd];
+
+        if (active)
+            print(rnd);
 
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
 
@@ -40,6 +46,7 @@ public class CarEngine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        if (!active) return;
         CheckTrafficLight();
         ApplySteer();
         Drive();
@@ -55,8 +62,6 @@ public class CarEngine : MonoBehaviour {
         // We measure how close we are to the intersection
         Vector3 distanceVector = 
             transform.InverseTransformPoint(intersection.transform.position);
-
-        print(distanceVector.magnitude);
 
         // If we are close and the traffic light is red, then we cannot drive
         if (distanceVector.magnitude < 17 && tl.allow == false) {
@@ -97,7 +102,7 @@ public class CarEngine : MonoBehaviour {
     }
 
     private void CheckWaypointDistance() {
-        if(Vector3.Distance(transform.position, nodes[currentNode].position) < 3) {
+        if(Vector3.Distance(transform.position, nodes[currentNode].position) < 2) {
             if (currentNode != nodes.Count - 1) {
                 currentNode++;
             }
