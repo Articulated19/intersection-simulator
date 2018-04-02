@@ -1,0 +1,1 @@
+Scene includes a post processing profile config for use with Unity's post procession stack.  Requires you to have this package installed in your project, package is free from Unity asset store (https://assetstore.unity.com/packages/essentials/post-processing-stack-83912).  
