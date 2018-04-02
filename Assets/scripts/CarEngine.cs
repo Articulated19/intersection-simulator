@@ -15,6 +15,7 @@ public class CarEngine : MonoBehaviour {
     public float maxBrakeTorque = 150f;
     public float currentSpeed;
     public float maximumSpeed = 30;
+    public GameObject intersection;
     public Vector3 centerOfMass;
     private float targetSteerAngle = 0;
     public GameObject trafficLight;
@@ -51,12 +52,14 @@ public class CarEngine : MonoBehaviour {
     private void CheckTrafficLight() {
         TrafficLight tl = trafficLight.GetComponent<TrafficLight>();
 
-        // We measure how close we are to the traffic light
+        // We measure how close we are to the intersection
         Vector3 distanceVector = 
-            transform.InverseTransformPoint(trafficLight.transform.position);
+            transform.InverseTransformPoint(intersection.transform.position);
+
+        print(distanceVector.magnitude);
 
         // If we are close and the traffic light is red, then we cannot drive
-        if (distanceVector.magnitude < 6f && tl.allow == false) {
+        if (distanceVector.magnitude < 17 && tl.allow == false) {
             canDrive = false;      
         } else {
             canDrive = true;
@@ -74,7 +77,6 @@ public class CarEngine : MonoBehaviour {
         currentSpeed = 2 * Mathf.PI * wheelFL.radius * wheelFL.rpm * 60 / 1000; // current speed
 
         if (currentSpeed < maximumSpeed) {
-            print(maxMotorTorque);
             wheelFL.motorTorque = maxMotorTorque;
             wheelFR.motorTorque = maxMotorTorque;    
         } else {
@@ -86,7 +88,6 @@ public class CarEngine : MonoBehaviour {
 
     private void Brake() {
         if (!canDrive) {
-            print("Breaaaaak!!!");
             wheelFL.brakeTorque = maxBrakeTorque;
             wheelFR.brakeTorque = maxBrakeTorque;
         } else {

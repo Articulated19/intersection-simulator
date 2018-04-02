@@ -1,31 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.ObjectModel;
 
 public class TrafficLightCoordinator : MonoBehaviour {
 
-    public List<GameObject> trafficLightsObjects = new List<GameObject>();
-    private Queue<TrafficLight> tlQueue = new Queue<TrafficLight>();
-    private TrafficLight currentTl;
+    public GameObject trafficLightObject1;
+    public GameObject trafficLightObject2;
+    public GameObject trafficLightObject3;
+    public GameObject trafficLightObject4;
 
-	// Use this for initialization
-	void Start () {
-        for (int i = 0; i < trafficLightsObjects.Count; i++) {
-            TrafficLight tl = trafficLightsObjects[i].GetComponent<TrafficLight>();
-            tlQueue.Enqueue(tl);
-        }
-        InvokeRepeating("nextLight", 0.0f, 10.0f);
+    private TrafficLight tl1;
+    private TrafficLight tl2;
+    private TrafficLight tl3;
+    private TrafficLight tl4;
+    
+    // Use this for initialization
+    void Start () {
+        tl1 = trafficLightObject1.GetComponent<TrafficLight>();
+        tl2 = trafficLightObject2.GetComponent<TrafficLight>();
+        tl3 = trafficLightObject3.GetComponent<TrafficLight>();
+        tl4 = trafficLightObject4.GetComponent<TrafficLight>();
 
-	}
+        tl1.allow = true;
+        tl3.allow = true;
+
+        InvokeRepeating("nextLight", 20.0f, 20.0f);
+
+    }
 
     void nextLight() {
-        if (currentTl) {
-            currentTl.allow = false;
-        }
-        TrafficLight tl = tlQueue.Dequeue();
-        tl.allow = true;
-        currentTl = tl;
-        tlQueue.Enqueue(tl);
+        tl1.allow = !tl1.allow;
+        tl2.allow = !tl2.allow;
+        tl3.allow = !tl3.allow;
+        tl4.allow = !tl4.allow;
     }
 
 }
