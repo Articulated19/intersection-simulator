@@ -63,14 +63,11 @@ public class CarEngine : MonoBehaviour {
     }
 
     private void CheckWaypointDistance() {
-        print(Vector3.Distance(transform.position+transform.forward, nodes[currentNode].position));
         if(Vector3.Distance(transform.position, nodes[currentNode].position) < 3) {
-            print("Hit detector");
             if (currentNode != nodes.Count - 1) {
                 currentNode++;
             }
         }
-        print(currentNode);
     }
 
     private void LerpToSteerAngle() {
