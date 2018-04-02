@@ -14,7 +14,7 @@ public class TrafficLightCoordinator : MonoBehaviour {
             TrafficLight tl = trafficLightsObjects[i].GetComponent<TrafficLight>();
             tlQueue.Enqueue(tl);
         }
-        InvokeRepeating("nextLight", 0.0f, 5.0f);
+        InvokeRepeating("nextLight", 0.0f, 10.0f);
 
 	}
 

@@ -415,7 +415,7 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0
   m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -614,9 +614,11 @@ MonoBehaviour:
   wheelFL: {fileID: 115838388}
   wheelFR: {fileID: 478752900}
   maxMotorTorque: 500
+  maxBrakeTorque: 750
   currentSpeed: 0
   maximumSpeed: 15
   centerOfMass: {x: 0, y: -2.81, z: 0}
+  trafficLight: {fileID: 852807118}
 --- !u!54 &96229823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1420,7 +1422,7 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0
   m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -2712,7 +2714,7 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0
   m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -3884,7 +3886,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 645494088}
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0052595, y: 0.48549926, z: -4.0171967}
+  m_LocalPosition: {x: -1.0052595, y: 0.4854993, z: -4.0171967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 625929051}
@@ -4327,7 +4329,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 745827921}
   m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0052595, y: 0.48549926, z: -4.0171967}
+  m_LocalPosition: {x: -1.0052595, y: 0.4854993, z: -4.0171967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 446019203}
@@ -4345,7 +4347,7 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0
   m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -4532,7 +4534,7 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0
   m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -5779,7 +5781,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aa4cbfd713e0f2e4c98be24d0265789d, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aa4cbfd713e0f2e4c98be24d0265789d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6017,7 +6019,7 @@ WheelCollider:
     spring: 35000
     damper: 4500
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
+  m_SuspensionDistance: 0
   m_ForceAppPointDistance: 0
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -9411,9 +9413,11 @@ MonoBehaviour:
   wheelFL: {fileID: 253980807}
   wheelFR: {fileID: 1846445658}
   maxMotorTorque: 500
+  maxBrakeTorque: 150
   currentSpeed: 0
   maximumSpeed: 11
   centerOfMass: {x: 0, y: -2.81, z: 0}
+  trafficLight: {fileID: 1066704865}
 --- !u!4 &1838201122
 Transform:
   m_ObjectHideFlags: 0
@@ -9834,7 +9838,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aa4cbfd713e0f2e4c98be24d0265789d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aa4cbfd713e0f2e4c98be24d0265789d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
