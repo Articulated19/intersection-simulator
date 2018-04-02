@@ -575,6 +575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carName: North
+  priority: 0
   paths:
   - {fileID: 966796787}
   - {fileID: 1078965307}
@@ -603,6 +605,12 @@ MonoBehaviour:
   centerOfMass: {x: 0, y: -2.81, z: 0}
   trafficLight: {fileID: 852807118}
   active: 0
+  secondsUntilIntersection: 100
+  onComingCar: {fileID: 0}
+  distanceUntilIntersection: 100
+  inIntersection: 0
+  isWaiting: 0
+  willTurn: 0
 --- !u!54 &96229823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -824,10 +832,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 0.07450981, g: 0.654902, b: 1, a: 1}
---- !u!4 &177182293 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-  m_PrefabInternal: {fileID: 1724730758}
 --- !u!1 &177189952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,6 +1800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carName: East
+  priority: 5
   paths:
   - {fileID: 431777859}
   - {fileID: 166329597}
@@ -1824,6 +1830,12 @@ MonoBehaviour:
   centerOfMass: {x: 0, y: -2.81, z: 0}
   trafficLight: {fileID: 2128853233}
   active: 1
+  secondsUntilIntersection: 100
+  onComingCar: {fileID: 1238373784}
+  distanceUntilIntersection: 100
+  inIntersection: 0
+  isWaiting: 0
+  willTurn: 0
 --- !u!54 &299931258
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3426,7 +3438,7 @@ Transform:
   - {fileID: 1799592350}
   - {fileID: 672985651}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &478752898
 GameObject:
@@ -4506,7 +4518,7 @@ Transform:
   m_LocalScale: {x: 0.87, y: 1, z: 0.86}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &625929050
 GameObject:
@@ -5079,6 +5091,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 687160181}
+  - component: {fileID: 687160182}
   m_Layer: 0
   m_Name: Trucks
   m_TagString: Untagged
@@ -5101,8 +5114,27 @@ Transform:
   - {fileID: 1085417117}
   - {fileID: 1798710052}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &687160182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 687160180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c125f35dda594123b2c72960520f209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  northTrucks:
+  - {fileID: 543568756}
+  eastTrucks:
+  - {fileID: 325769415}
+  southTrucks:
+  - {fileID: 1085417116}
+  westTrucks:
+  - {fileID: 1798710051}
 --- !u!1 &700222004
 GameObject:
   m_ObjectHideFlags: 0
@@ -5664,7 +5696,7 @@ Transform:
   - {fileID: 1066704868}
   - {fileID: 1800750597}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &774720456
 GameObject:
@@ -8083,6 +8115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carName: West
+  priority: 10
   paths:
   - {fileID: 184118854}
   - {fileID: 488904136}
@@ -8110,7 +8144,13 @@ MonoBehaviour:
   intersection: {fileID: 620921996}
   centerOfMass: {x: 0, y: -2.81, z: 0}
   trafficLight: {fileID: 1800750598}
-  active: 0
+  active: 1
+  secondsUntilIntersection: 100
+  onComingCar: {fileID: 299931252}
+  distanceUntilIntersection: 100
+  inIntersection: 0
+  isWaiting: 0
+  willTurn: 0
 --- !u!54 &1238373790
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11111,72 +11151,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4851073239926654, guid: 48e0856ba8c8b5d42837cb127aae3b01,
     type: 2}
   m_PrefabInternal: {fileID: 325494804}
---- !u!1001 &1724730758
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -6.897137
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -3.3524863e-17
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 1.5098255
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.9984747
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.05521151
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 408730, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 186.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 469942, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 448028, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 495908, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1737503299
 GameObject:
   m_ObjectHideFlags: 0
@@ -12259,7 +12233,7 @@ Transform:
   - {fileID: 1914179234}
   - {fileID: 1377463659}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899993562
 GameObject:
@@ -12466,6 +12440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carName: South
+  priority: 0
   paths:
   - {fileID: 1651841948}
   - {fileID: 1484942788}
@@ -12494,6 +12470,12 @@ MonoBehaviour:
   centerOfMass: {x: 0, y: -2.81, z: 0}
   trafficLight: {fileID: 1066704865}
   active: 0
+  secondsUntilIntersection: 100
+  onComingCar: {fileID: 0}
+  distanceUntilIntersection: 100
+  inIntersection: 0
+  isWaiting: 0
+  willTurn: 0
 --- !u!54 &1905041639
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13107,95 +13089,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2034697220}
   m_Mesh: {fileID: 4300004, guid: 025722d3ca0cfa84691608d47365677d, type: 3}
---- !u!1 &2036168499
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2036168500}
-  - component: {fileID: 2036168504}
-  - component: {fileID: 2036168503}
-  - component: {fileID: 2036168502}
-  - component: {fileID: 2036168501}
-  m_Layer: 0
-  m_Name: 3rdPersonCamera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2036168500
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2036168499}
-  m_LocalRotation: {x: -0.123947844, y: -0.0000000037252903, z: -0, w: -0.99228877}
-  m_LocalPosition: {x: 0.06436537, y: 1.43, z: -1.9147519}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 177182293}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 14.24, y: -173.67001, z: 0}
---- !u!81 &2036168501
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2036168499}
-  m_Enabled: 0
---- !u!92 &2036168502
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2036168499}
-  m_Enabled: 1
---- !u!124 &2036168503
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2036168499}
-  m_Enabled: 1
---- !u!20 &2036168504
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2036168499}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 2
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!1 &2065209331
 GameObject:
   m_ObjectHideFlags: 0

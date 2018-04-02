@@ -22,8 +22,8 @@ public class TrafficLightCoordinator : MonoBehaviour {
         tl3 = trafficLightObject3.GetComponent<TrafficLight>();
         tl4 = trafficLightObject4.GetComponent<TrafficLight>();
 
-        tl1.allow = true;
-        tl3.allow = true;
+        tl2.allow = true;
+        tl4.allow = true;
 
         InvokeRepeating("nextLight", 20.0f, 20.0f);
 
