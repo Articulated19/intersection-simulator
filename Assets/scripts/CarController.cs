@@ -13,25 +13,29 @@ public class CarController : MonoBehaviour {
     public bool justOutsideIntersection = false;
     public bool inIntersection = false;
     private bool reachedEndOfPath = false;
-    private bool allowedToDrive = false;
+    public bool active = true;
+    private bool tooCloseToPrevailing = false;
 
-    public GameObject onComingCar;
     public GameObject intersection;
     public GameObject intersectionEntrance;
     public GameObject trafficLightObj;
+    public GameObject prevailingVehicle;
 
+    private GameObject onComingCar = null;
     private CarPathFinder carPathFinder;
     private CarEngine carEngine;
+    private CarSensors carSensors;
     private CarPathFinder oncomingCarPf;
     private CarController oncomingCarCtrl;
     private TrafficLight trafficLight;
 
+
 	// Use this for initialization
 	void Start () {
         carEngine = GetComponentInChildren<CarEngine>();
+        carSensors = GetComponentInChildren<CarSensors>();
         carPathFinder = GetComponentInParent<CarPathFinder>();
-        oncomingCarPf = onComingCar.GetComponent<CarPathFinder>();
-        oncomingCarCtrl = onComingCar.GetComponent<CarController>();
+
         trafficLight = trafficLightObj.GetComponent<TrafficLight>();
 
         // Events
@@ -48,11 +52,33 @@ public class CarController : MonoBehaviour {
             carEngine.Stop();
         }
         CheckOnComingTraffic();
+        CheckPrevailingTruck();
 	}
+
+    public void SetOncomingCar(GameObject oncomingCar) {
+        this.onComingCar = oncomingCar;
+        oncomingCarPf = onComingCar.GetComponent<CarPathFinder>();
+        oncomingCarCtrl = onComingCar.GetComponent<CarController>();
+    }
+
+    private void CheckPrevailingTruck()
+    {
+        if (prevailingVehicle)
+        {
+            if (carSensors.DistanceToPrevailingTruck() < 20)
+            {
+                tooCloseToPrevailing = true;
+            } else {
+                tooCloseToPrevailing = false;
+            }
+        }
+    }
 
 	private bool IsAllowedToDrive()
     {
+        if (!active) return false;
         if (reachedEndOfPath) return false;
+        if (tooCloseToPrevailing) return false;
 
         // If I have priority or if I'm approaching intersection I can drive
         if (havePriority || !justOutsideIntersection)
@@ -105,7 +131,7 @@ public class CarController : MonoBehaviour {
     }
 
     private void HandleExitIntersection(int carId) {
-        if (oncomingCarCtrl.carId == carId)
+        if (oncomingCarCtrl && oncomingCarCtrl.carId == carId)
         {
             CarLog("We can drive again!");
             isGivingWay = false;
@@ -128,9 +154,22 @@ public class CarController : MonoBehaviour {
         return intersection;
     }
 
+    public Component GetCar() {
+        return transform.Find("Car");
+    }
+
+    public Component GetTrailer()
+    {
+        return transform.Find("Trailer");
+    }
+
 
     public void CarLog(string message)
     {
         print(carName + ": " + message);
+    }
+
+    public void SetPrevailingVehicle(GameObject prevVehicle) {
+        prevailingVehicle = prevVehicle;
     }
 }

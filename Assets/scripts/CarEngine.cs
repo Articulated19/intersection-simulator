@@ -12,12 +12,14 @@ public class CarEngine : MonoBehaviour {
     public float maximumSpeed = 30;
     private float targetSteerAngle = 0;
     private CarPathFinder carPathFinder;
+    private CarController carController;
 
     public Queue<double> secondsAvg = new Queue<double>();
 
 	// Use this for initialization
 	void Start () {
         carPathFinder = GetComponentInParent<CarPathFinder>();
+        carController = GetComponentInParent<CarController>();
 	}
 
     public void Drive() {
