@@ -12,6 +12,7 @@ public class CarController : MonoBehaviour {
     public bool isGivingWay = false;
     public bool justOutsideIntersection = false;
     public bool inIntersection = false;
+    private bool reachedEndOfPath = false;
     private bool allowedToDrive = false;
 
     public GameObject onComingCar;
@@ -36,6 +37,7 @@ public class CarController : MonoBehaviour {
         // Events
         CarEventManager.StartListening("JustOutisdeIntersection", HandleJustOutsideIntersection);
         CarEventManager.StartListening("ExitIntersection", HandleExitIntersection);
+        CarEventManager.StartListening("PathEndReached", HandlePathEndReached);
 	}
 	
 	// Update is called once per frame
@@ -50,6 +52,8 @@ public class CarController : MonoBehaviour {
 
 	private bool IsAllowedToDrive()
     {
+        if (reachedEndOfPath) return false;
+
         // If I have priority or if I'm approaching intersection I can drive
         if (havePriority || !justOutsideIntersection)
         {
@@ -71,7 +75,10 @@ public class CarController : MonoBehaviour {
 
     private void CheckOnComingTraffic()
     {
-        if (onComingCar != null && carPathFinder.willTurn && !havePriority)
+        if (onComingCar != null 
+            && carPathFinder.willTurn 
+            && !havePriority
+            && trafficLight.allow)
         {
             
             double occSndsUntilIntersection = oncomingCarPf.SecondsUntilIntersection();
@@ -85,13 +92,11 @@ public class CarController : MonoBehaviour {
                 if (isGivingWay && oncomingCarCtrl.isGivingWay 
                     && oncomingCarCtrl.priority < this.priority)
                 {
-                    print("Car " + carName + ": I have priority! I'll drive!");
                     CarLog("I have priority, so I will drive");
                     havePriority = true;
                 }
                 else
                 {
-                    CarLog("I must wait for oncomming traffic");
                     isGivingWay = true;
                 }
 
@@ -108,9 +113,12 @@ public class CarController : MonoBehaviour {
         }
     }
 
-    public void HandleJustOutsideIntersection(int carId) {
-        print(carId);
+    private void HandleJustOutsideIntersection(int carId) {
         justOutsideIntersection |= carId == this.carId;
+    }
+
+    private void HandlePathEndReached(int carId) {
+        reachedEndOfPath |= carId == this.carId;
     }
 
     public GameObject getIntersection() {

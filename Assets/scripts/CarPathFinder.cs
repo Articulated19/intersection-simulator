@@ -8,6 +8,7 @@ public class CarPathFinder : MonoBehaviour {
     public List<Transform> nodes;
     private CarEngine carEngine;
     private CarController carController;
+    private GameObject car;
     public bool willTurn = false;
     public int currentNode = 0;
     private Queue<double> secondsAvg = new Queue<double>();
@@ -16,6 +17,8 @@ public class CarPathFinder : MonoBehaviour {
 	void Start () {
         carEngine = GetComponentInChildren<CarEngine>();
         carController = GetComponentInParent<CarController>();
+        Component carComp = transform.Find("Car");
+        car = carComp.gameObject;
 
         nodes = new List<Transform>();
         int rnd = Random.Range(0, paths.Length);
@@ -49,7 +52,7 @@ public class CarPathFinder : MonoBehaviour {
     {
         // We measure how close we are to the intersection
         Vector3 distanceVector =
-            transform.InverseTransformPoint(carController.getIntersection().transform.position);
+            car.transform.InverseTransformPoint(carController.getIntersection().transform.position);
 
         double vs = ((carEngine.currentSpeed / 3.6) / distanceVector.magnitude);
         double seconds = 100;
@@ -57,7 +60,7 @@ public class CarPathFinder : MonoBehaviour {
         // Since 
         if (vs > 0.00001)
         {
-
+          
             // We remove last measurement of seconds until intersection
             // and current speed. This smoothes out the values.
         if (secondsAvg.Count > 10) {
@@ -87,13 +90,14 @@ public class CarPathFinder : MonoBehaviour {
 
     private void CheckWaypointDistance()
     {
-        if (Vector3.Distance(transform.position, nodes[currentNode].position) < 2)
+
+        if (Vector3.Distance(car.transform.position, nodes[currentNode].position) < 2)
         {
             if (currentNode != nodes.Count - 1)
             {
                 currentNode++;
             } else {
-                
+                CarEventManager.TriggerEvent("PathEndReached", carController.carId);
             }
         }
     }
