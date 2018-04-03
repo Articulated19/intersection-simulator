@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class IntersectionCoordinator : MonoBehaviour {
 
-    public List<GameObject> carObjects;
-    private List<CarEngine> cars;
-
+    List<int> carIds = new List<int>();
 	// Use this for initialization
 	void Start () {
-        for (int i = 0; i < carObjects.Count; i++)
-        {
-            cars.Add(carObjects[i].GetComponent<CarEngine>());
-        }
+        CarEventManager.StartListening("EnterIntersection", HandleEnterIntersection);
+        CarEventManager.StartListening("ExitIntersection", HandleExitIntersection);
 	}
 	
-	void FixedUpdate () {
-		
-	}
+    void HandleEnterIntersection(int carId) {
+        
+    }
+
+    void HandleExitIntersection(int carId) {
+        
+    }
 }

@@ -34,13 +34,15 @@ public class CarEngine : MonoBehaviour {
 
     // Decice steering angle from the path finding
     private void Steer() {
-        Vector3 relativeVector = 
+        if (transform) {
+            Vector3 relativeVector =
             transform.InverseTransformPoint(
                 carPathFinder.nodes[carPathFinder.currentNode].position
             );
-        float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteerAngle;
+            float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteerAngle;
 
-        targetSteerAngle = newSteer;
+            targetSteerAngle = newSteer;    
+        }
     }
 
     private void Gas() {

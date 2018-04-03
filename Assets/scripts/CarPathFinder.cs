@@ -19,6 +19,7 @@ public class CarPathFinder : MonoBehaviour {
         carController = GetComponentInParent<CarController>();
         Component carComp = transform.Find("Car");
         car = carComp.gameObject;
+        currentNode = 0;
 
         nodes = new List<Transform>();
         int rnd = Random.Range(0, paths.Length);

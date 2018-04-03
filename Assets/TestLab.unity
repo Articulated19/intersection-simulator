@@ -181,11 +181,12 @@ MonoBehaviour:
   justOutsideIntersection: 0
   inIntersection: 0
   active: 0
-  onComingCar: {fileID: 0}
+  inDeepIntersection: 0
   intersection: {fileID: 146017101}
   intersectionEntrance: {fileID: 1802015738}
   trafficLightObj: {fileID: 1066704865}
   prevailingVehicle: {fileID: 0}
+  onComingCar: {fileID: 0}
 --- !u!111 &31126742
 Animation:
   m_ObjectHideFlags: 0
@@ -366,12 +367,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteerAngle: 55
+  maxSteerAngle: 60
   turnSpeed: 10
   wheelFL: {fileID: 537914268}
   wheelFR: {fileID: 1751976372}
   maxMotorTorque: 500
-  maxBrakeTorque: 750
+  maxBrakeTorque: 1000
   currentSpeed: 0
   maximumSpeed: 15
 --- !u!54 &35727178
@@ -1085,11 +1086,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130940888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.207, y: 0, z: 1.717}
-  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_LocalPosition: {x: 1.618, y: 0, z: 3.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 146017103}
-  m_RootOrder: 4
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &130940890
 MonoBehaviour:
@@ -1324,6 +1325,7 @@ GameObject:
   - component: {fileID: 146017103}
   - component: {fileID: 146017102}
   - component: {fileID: 146017104}
+  - component: {fileID: 146017105}
   m_Layer: 0
   m_Name: Intersection
   m_TagString: Untagged
@@ -1349,20 +1351,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 146017101}
-  m_LocalRotation: {x: -0, y: -0.0013090669, z: -0, w: 0.99999917}
-  m_LocalPosition: {x: -14.879992, y: 0, z: -2.7999985}
-  m_LocalScale: {x: 9.13, y: 1, z: 8.8}
-  m_Children:
-  - {fileID: 1802015739}
-  - {fileID: 1788019919}
-  - {fileID: 1023031019}
-  - {fileID: 277826157}
-  - {fileID: 130940889}
-  - {fileID: 1528063381}
-  - {fileID: 1899566749}
-  - {fileID: 409629353}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4440769, y: 0, z: -0.6339972}
+  m_LocalScale: {x: 0.8177572, y: 1, z: 3.2058203}
+  m_Children: []
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &146017104
 MonoBehaviour:
@@ -1375,7 +1369,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d720255ddc7b48d4b337bf94caf5248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carObjects: []
+--- !u!114 &146017105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 146017101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159dabdedf41e4a0586d14e8a66c199e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &154567120 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 230fd40228ed76a4384f0dbd5443e76a, type: 3}
@@ -1979,12 +1983,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteerAngle: 55
+  maxSteerAngle: 60
   turnSpeed: 10
   wheelFL: {fileID: 1845720761}
   wheelFR: {fileID: 494571486}
   maxMotorTorque: 500
-  maxBrakeTorque: 750
+  maxBrakeTorque: 1000
   currentSpeed: 0
   maximumSpeed: 15
 --- !u!54 &262650324
@@ -2211,11 +2215,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 277826156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.919, y: 0, z: -0.196}
-  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_LocalPosition: {x: 0.654, y: 0, z: -1.24}
+  m_LocalScale: {x: 1.394218, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 146017103}
-  m_RootOrder: 3
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &277826158
 BoxCollider:
@@ -2783,11 +2787,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 409629352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.715, y: 0, z: 0.204}
-  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_LocalPosition: {x: 0.213, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 146017103}
-  m_RootOrder: 7
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &409629354
 MonoBehaviour:
@@ -4316,12 +4320,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteerAngle: 55
+  maxSteerAngle: 60
   turnSpeed: 10
   wheelFL: {fileID: 1034951245}
   wheelFR: {fileID: 951427431}
   maxMotorTorque: 500
-  maxBrakeTorque: 750
+  maxBrakeTorque: 1000
   currentSpeed: 0
   maximumSpeed: 15
 --- !u!54 &665955459
@@ -5014,6 +5018,48 @@ Transform:
   - {fileID: 1800750597}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &779037664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 779037666}
+  - component: {fileID: 779037665}
+  m_Layer: 0
+  m_Name: TimeScale
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &779037665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779037664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05003f93404e445ad83bee4e1c25c2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeScale: 3
+  destroyObject: 1
+--- !u!4 &779037666
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779037664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -14.764383, y: 3.0004551, z: -6.3873467}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &779417977
 GameObject:
@@ -6407,6 +6453,44 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1011684168}
   m_Mesh: {fileID: 4300020, guid: 025722d3ca0cfa84691608d47365677d, type: 3}
+--- !u!1 &1017047192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1017047193}
+  m_Layer: 0
+  m_Name: IntersectionWrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1017047193
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1017047192}
+  m_LocalRotation: {x: -0, y: -0.0013090669, z: -0, w: 0.99999917}
+  m_LocalPosition: {x: -30.542587, y: 0, z: -1.0457993}
+  m_LocalScale: {x: 10.842878, y: 1, z: 2.8315582}
+  m_Children:
+  - {fileID: 146017103}
+  - {fileID: 1802015739}
+  - {fileID: 1788019919}
+  - {fileID: 1023031019}
+  - {fileID: 277826157}
+  - {fileID: 130940889}
+  - {fileID: 1528063381}
+  - {fileID: 1899566749}
+  - {fileID: 409629353}
+  - {fileID: 1267065918}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1022677376
 GameObject:
   m_ObjectHideFlags: 0
@@ -6459,11 +6543,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1023031018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.172, y: 0, z: -0.907}
-  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_LocalPosition: {x: 1.59, y: 0, z: -3.86}
+  m_LocalScale: {x: 1, y: 1, z: 1.7132982}
   m_Children: []
-  m_Father: {fileID: 146017103}
-  m_RootOrder: 2
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1023031020
 BoxCollider:
@@ -7330,11 +7414,12 @@ MonoBehaviour:
   justOutsideIntersection: 0
   inIntersection: 0
   active: 0
-  onComingCar: {fileID: 0}
+  inDeepIntersection: 0
   intersection: {fileID: 146017101}
   intersectionEntrance: {fileID: 1802015738}
   trafficLightObj: {fileID: 852807118}
   prevailingVehicle: {fileID: 0}
+  onComingCar: {fileID: 0}
 --- !u!111 &1121759399
 Animation:
   m_ObjectHideFlags: 0
@@ -8061,6 +8146,59 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!1 &1267065917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1267065918}
+  - component: {fileID: 1267065922}
+  - component: {fileID: 1267065919}
+  m_Layer: 0
+  m_Name: DeepIntersection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1267065918
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1267065917}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.444077, y: 0, z: -0.6339972}
+  m_LocalScale: {x: 0.41586158, y: 1, z: 1.6930503}
+  m_Children: []
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1267065919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1267065917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca27b02bd05d4deda6b306e0307fc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1267065922
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1267065917}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1287192289
 GameObject:
   m_ObjectHideFlags: 0
@@ -8158,11 +8296,12 @@ MonoBehaviour:
   justOutsideIntersection: 0
   inIntersection: 0
   active: 0
-  onComingCar: {fileID: 0}
+  inDeepIntersection: 0
   intersection: {fileID: 146017101}
   intersectionEntrance: {fileID: 1802015738}
   trafficLightObj: {fileID: 2128853233}
   prevailingVehicle: {fileID: 0}
+  onComingCar: {fileID: 0}
 --- !u!111 &1295700876
 Animation:
   m_ObjectHideFlags: 0
@@ -8562,11 +8701,12 @@ MonoBehaviour:
   justOutsideIntersection: 0
   inIntersection: 0
   active: 0
-  onComingCar: {fileID: 0}
+  inDeepIntersection: 0
   intersection: {fileID: 146017101}
   intersectionEntrance: {fileID: 1802015738}
   trafficLightObj: {fileID: 1800750598}
   prevailingVehicle: {fileID: 0}
+  onComingCar: {fileID: 0}
 --- !u!111 &1407104995
 Animation:
   m_ObjectHideFlags: 0
@@ -8589,7 +8729,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1407104992}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -36.6, y: 1.26, z: -3.14}
+  m_LocalPosition: {x: -23.94, y: 1.26, z: -3.14}
   m_LocalScale: {x: 0.8000004, y: 0.79999995, z: 0.8000004}
   m_Children:
   - {fileID: 35727173}
@@ -9466,11 +9606,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1528063380}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.82, y: 0, z: -0.195}
-  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_LocalPosition: {x: 2.781, y: 0, z: -1.24}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 146017103}
-  m_RootOrder: 5
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1528063382
 MonoBehaviour:
@@ -10072,12 +10212,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSteerAngle: 55
+  maxSteerAngle: 60
   turnSpeed: 10
   wheelFL: {fileID: 1728768233}
   wheelFR: {fileID: 1479848979}
   maxMotorTorque: 500
-  maxBrakeTorque: 750
+  maxBrakeTorque: 1000
   currentSpeed: 0
   maximumSpeed: 15
 --- !u!54 &1628774016
@@ -11612,11 +11752,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1788019918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.906, y: 0, z: 0.228}
-  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_LocalPosition: {x: 2.292, y: 0, z: 0.07}
+  m_LocalScale: {x: 1.430735, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 146017103}
-  m_RootOrder: 1
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1788019920
 BoxCollider:
@@ -11774,12 +11914,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1802015738}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.222, y: 0, z: 0.926}
-  m_LocalScale: {x: 1.1876094, y: 1, z: 0.32176816}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.256, y: 0, z: 2.44}
+  m_LocalScale: {x: 1, y: 1, z: 1.5153961}
   m_Children: []
-  m_Father: {fileID: 146017103}
-  m_RootOrder: 0
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1802015740
 BoxCollider:
@@ -12569,11 +12709,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1899566748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.213, y: 0, z: -1.547}
-  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_LocalPosition: {x: 1.265, y: 0, z: -5.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 146017103}
-  m_RootOrder: 6
+  m_Father: {fileID: 1017047193}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1899566750
 MonoBehaviour:

@@ -15,13 +15,14 @@ public class CarController : MonoBehaviour {
     private bool reachedEndOfPath = false;
     public bool active = true;
     private bool tooCloseToPrevailing = false;
+    public bool inDeepIntersection = false;
 
     public GameObject intersection;
     public GameObject intersectionEntrance;
     public GameObject trafficLightObj;
     public GameObject prevailingVehicle;
 
-    private GameObject onComingCar = null;
+    public GameObject onComingCar = null;
     private CarPathFinder carPathFinder;
     private CarEngine carEngine;
     private CarSensors carSensors;
@@ -41,17 +42,29 @@ public class CarController : MonoBehaviour {
         // Events
         CarEventManager.StartListening("JustOutisdeIntersection", HandleJustOutsideIntersection);
         CarEventManager.StartListening("ExitIntersection", HandleExitIntersection);
+        CarEventManager.StartListening("EnterIntersection", HandleEnterIntersection);
+        CarEventManager.StartListening("EnterDeepIntersection", HandleEnterDeepIntersection);
         CarEventManager.StartListening("PathEndReached", HandlePathEndReached);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        CheckOnComingTraffic();
+
         if(IsAllowedToDrive()) {
             carEngine.Drive();
+            CarLog("Im allowed to drive :)");
+            CarLog("Reached end of path: " + reachedEndOfPath + ", Too close to prevailing: " + tooCloseToPrevailing + ", Traffic Light blocks me: " + (!trafficLight.allow && justOutsideIntersection) + ", I'm giving way: " + isGivingWay + ", I have priority: " + havePriority);
         } else {
+            CarLog("Im not allowed to drive :(");
+            CarLog("Reached end of path: " + reachedEndOfPath + ", Too close to prevailing: " + tooCloseToPrevailing + ", Traffic Light blocks me: " + (!trafficLight.allow && justOutsideIntersection)+ ", I'm giving way: " + isGivingWay);
+
             carEngine.Stop();
         }
-        CheckOnComingTraffic();
+        if (oncomingCarCtrl)
+        {
+            CarLog("My opposite car is " + oncomingCarCtrl.carId);
+        }
         CheckPrevailingTruck();
 	}
 
@@ -65,7 +78,7 @@ public class CarController : MonoBehaviour {
     {
         if (prevailingVehicle)
         {
-            if (carSensors.DistanceToPrevailingTruck() < 20)
+            if (carSensors.DistanceToPrevailingTruck() < 30)
             {
                 tooCloseToPrevailing = true;
             } else {
@@ -81,8 +94,9 @@ public class CarController : MonoBehaviour {
         if (tooCloseToPrevailing) return false;
 
         // If I have priority or if I'm approaching intersection I can drive
-        if (havePriority || !justOutsideIntersection)
+        if (havePriority || !(justOutsideIntersection || inIntersection))
         {
+            CarLog("Do I have priority: " + havePriority + " Am I approaching the intersection: " + !(justOutsideIntersection || inIntersection));
             return true;
 
         // If I do not have priority, and I'm at the intersection
@@ -101,15 +115,19 @@ public class CarController : MonoBehaviour {
 
     private void CheckOnComingTraffic()
     {
-        if (onComingCar != null 
-            && carPathFinder.willTurn 
+        if (onComingCar == null) {
+            isGivingWay = false;
+            return;
+        }
+
+        if (carPathFinder.willTurn 
             && !havePriority
             && trafficLight.allow)
         {
             
             double occSndsUntilIntersection = oncomingCarPf.SecondsUntilIntersection();
 
-            // If an oncomming car has less than 6 seconds until it reaches the 
+            // If an oncomming car has less than 8 seconds until it reaches the 
             // intersection
 
             if (occSndsUntilIntersection < 6)
@@ -126,6 +144,19 @@ public class CarController : MonoBehaviour {
                     isGivingWay = true;
                 }
 
+            } else {
+                // Else we have time to manouver
+                CarLog("My oncoming car is more than 6 seconds away!");
+                isGivingWay = false;
+            }
+        }
+
+        if (!carPathFinder.willTurn)
+        {
+            if (oncomingCarCtrl.inDeepIntersection && !inDeepIntersection) {
+                isGivingWay = true;
+            } else {
+                isGivingWay = false;
             }
         }
     }
@@ -135,7 +166,12 @@ public class CarController : MonoBehaviour {
         {
             CarLog("We can drive again!");
             isGivingWay = false;
-            havePriority = true;
+        }
+        // it was me who exited
+        if (this.carId == carId) {
+            inIntersection = false;
+            justOutsideIntersection = false;
+            inDeepIntersection = false;
         }
     }
 
@@ -147,6 +183,20 @@ public class CarController : MonoBehaviour {
         if(carId == this.carId) {
             reachedEndOfPath = true;
             Destroy(transform.gameObject);
+        }
+    }
+
+    private void HandleEnterIntersection(int carId) {
+        if (carId == this.carId)
+        {
+            inIntersection = true;
+            justOutsideIntersection = false;
+        }
+    }
+
+    private void HandleEnterDeepIntersection(int carId) {
+        if (carId == this.carId) {
+            inDeepIntersection = true;
         }
     }
 
@@ -163,10 +213,9 @@ public class CarController : MonoBehaviour {
         return transform.Find("Trailer");
     }
 
-
     public void CarLog(string message)
     {
-        print(carName + ": " + message);
+        print(carId + ": " + message);
     }
 
     public void SetPrevailingVehicle(GameObject prevVehicle) {
