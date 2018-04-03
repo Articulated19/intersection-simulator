@@ -25,10 +25,6 @@ public class CarController : MonoBehaviour {
     private CarController oncomingCarCtrl;
     private TrafficLight trafficLight;
 
-
-    public delegate void ExitIntersection(int id);
-    public static event ExitIntersection OnExitInterSection;
-
 	// Use this for initialization
 	void Start () {
         carEngine = GetComponentInChildren<CarEngine>();
@@ -36,6 +32,10 @@ public class CarController : MonoBehaviour {
         oncomingCarPf = onComingCar.GetComponent<CarPathFinder>();
         oncomingCarCtrl = onComingCar.GetComponent<CarController>();
         trafficLight = trafficLightObj.GetComponent<TrafficLight>();
+
+        // Events
+        CarEventManager.StartListening("JustOutisdeIntersection", HandleJustOutsideIntersection);
+        CarEventManager.StartListening("ExitIntersection", HandleExitIntersection);
 	}
 	
 	// Update is called once per frame
@@ -66,7 +66,6 @@ public class CarController : MonoBehaviour {
         {
             return false;
         }
-
     }
 
 
@@ -94,16 +93,13 @@ public class CarController : MonoBehaviour {
                 {
                     CarLog("I must wait for oncomming traffic");
                     isGivingWay = true;
-
-                    CarController.OnExitInterSection += OurTurnToDriveCallback;
-
                 }
 
             }
         }
     }
 
-    private void OurTurnToDriveCallback(int carId) {
+    private void HandleExitIntersection(int carId) {
         if (oncomingCarCtrl.carId == carId)
         {
             CarLog("We can drive again!");
@@ -112,20 +108,15 @@ public class CarController : MonoBehaviour {
         }
     }
 
+    public void HandleJustOutsideIntersection(int carId) {
+        print(carId);
+        justOutsideIntersection |= carId == this.carId;
+    }
+
     public GameObject getIntersection() {
         return intersection;
     }
 
-    public void TriggerOutsideIntersection() {
-        justOutsideIntersection = true;
-    }
-
-    public void TriggerExitIntersection() {
-        justOutsideIntersection = false;
-        if (OnExitInterSection != null) {
-            OnExitInterSection(carId);    
-        }
-    }
 
     public void CarLog(string message)
     {

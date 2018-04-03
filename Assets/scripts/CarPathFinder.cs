@@ -92,6 +92,8 @@ public class CarPathFinder : MonoBehaviour {
             if (currentNode != nodes.Count - 1)
             {
                 currentNode++;
+            } else {
+                
             }
         }
     }

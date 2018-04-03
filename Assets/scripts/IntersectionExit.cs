@@ -6,10 +6,9 @@ public class IntersectionExit : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Car")
-        {
+        if (other.gameObject.name == "Car") {
             CarController cc = other.gameObject.GetComponentInParent<CarController>();
-            cc.TriggerExitIntersection();
+            CarEventManager.TriggerEvent("ExitIntersection", cc.carId);
         }
     }
 }

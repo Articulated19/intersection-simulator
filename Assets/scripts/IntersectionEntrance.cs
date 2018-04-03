@@ -8,7 +8,7 @@ public class IntersectionEntrance : MonoBehaviour {
     {
         if (other.gameObject.name == "Car") {
             CarController cc = other.gameObject.GetComponentInParent<CarController>();
-            cc.TriggerOutsideIntersection();    
+            CarEventManager.TriggerEvent("JustOutisdeIntersection", cc.carId);
         }
     }
 }
