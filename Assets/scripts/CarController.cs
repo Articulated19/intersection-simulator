@@ -30,6 +30,9 @@ public class CarController : MonoBehaviour {
     private CarController oncomingCarCtrl;
     private TrafficLight trafficLight;
 
+    private bool aBitOff;
+    private bool driveOverride = false;
+    private bool stopOverride = false;
 
 	// Use this for initialization
 	void Start () {
@@ -45,11 +48,14 @@ public class CarController : MonoBehaviour {
         CarEventManager.StartListening("EnterIntersection", HandleEnterIntersection);
         CarEventManager.StartListening("EnterDeepIntersection", HandleEnterDeepIntersection);
         CarEventManager.StartListening("PathEndReached", HandlePathEndReached);
+        CarEventManager.StartListening("ABitOffCar", HandleABitOff);
+        CarEventManager.StartListening("ABitOffCarLeaves", HandleABitOffLeaves);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         CheckOnComingTraffic();
+        bool aBitOff = CheckIfImABitOff();
 
         if(IsAllowedToDrive()) {
             carEngine.Drive();
@@ -68,6 +74,17 @@ public class CarController : MonoBehaviour {
         CheckPrevailingTruck();
 	}
 
+    // If the car is a tiiny bit in the intersection but are now allowed to drive
+    private bool CheckIfImABitOff() {
+        if (!inDeepIntersection && inIntersection && !trafficLight.allow) {
+            print("Imma bit off! " + carId);
+            CarEventManager.TriggerEvent("CarABitOff", carId);
+            return true;
+        }
+
+        return false;
+    }
+
     public void SetOncomingCar(GameObject oncomingCar) {
         this.onComingCar = oncomingCar;
         oncomingCarPf = onComingCar.GetComponent<CarPathFinder>();
@@ -78,7 +95,7 @@ public class CarController : MonoBehaviour {
     {
         if (prevailingVehicle)
         {
-            if (carSensors.DistanceToPrevailingTruck() < 30)
+            if (carSensors.DistanceToPrevailingTruck() < 15)
             {
                 tooCloseToPrevailing = true;
             } else {
@@ -90,6 +107,10 @@ public class CarController : MonoBehaviour {
 	private bool IsAllowedToDrive()
     {
         if (!active) return false;
+
+        if (driveOverride) return true;
+        if (stopOverride) return false;
+
         if (reachedEndOfPath) return false;
         if (tooCloseToPrevailing) return false;
 
@@ -106,8 +127,9 @@ public class CarController : MonoBehaviour {
         {
             return true;
         }
-        else
-        {
+        else if (inDeepIntersection) {
+            return true;
+        } else {
             return false;
         }
     }
@@ -172,6 +194,9 @@ public class CarController : MonoBehaviour {
             inIntersection = false;
             justOutsideIntersection = false;
             inDeepIntersection = false;
+            if (aBitOff) {
+                CarEventManager.TriggerEvent("ABitOffCarLeaves", carId);
+            }
         }
     }
 
@@ -213,9 +238,25 @@ public class CarController : MonoBehaviour {
         return transform.Find("Trailer");
     }
 
+    public void HandleABitOff(int carId) {
+        if (this.carId == carId) {
+            aBitOff = true;
+            driveOverride = true;
+            stopOverride = false;
+        } else {
+            driveOverride = false;
+            stopOverride = true;
+        }
+    }
+
+    private void HandleABitOffLeaves(int carId) {
+        driveOverride = false;
+        stopOverride = false;
+    }
+
     public void CarLog(string message)
     {
-        print(carId + ": " + message);
+        //print(carId + ": " + message);
     }
 
     public void SetPrevailingVehicle(GameObject prevVehicle) {

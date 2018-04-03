@@ -15,9 +15,11 @@ public class TrafficLightCoordinator : MonoBehaviour {
     private TrafficLight tl3;
     private TrafficLight tl4;
 
+    private bool[] savedState = new bool[4]; 
+
     private bool waitingForLastCarsToLeave = false;
 
-    private List<int> carsInTheIntersection = new List<int>();
+    public List<int> carsInTheIntersection = new List<int>();
     
     // Use this for initialization
     void Start () {
@@ -41,6 +43,18 @@ public class TrafficLightCoordinator : MonoBehaviour {
         if (carsInTheIntersection.Count > 0) {
             waitingForLastCarsToLeave = true;
             print("Waiting to switch");
+
+            savedState[0] = tl1.allow;
+            savedState[1] = tl2.allow;
+            savedState[2] = tl3.allow;
+            savedState[3] = tl4.allow;
+
+            // Waiting for the last cars to leave
+            tl1.allow = false;
+            tl2.allow = false;
+            tl3.allow = false;
+            tl4.allow = false;
+
         } else {
             tl1.allow = !tl1.allow;
             tl2.allow = !tl2.allow;
@@ -69,7 +83,10 @@ public class TrafficLightCoordinator : MonoBehaviour {
         // If we are waiting for the last cars to leave we switch if the 
         // intersection is empty
         if (carsInTheIntersection.Count == 0 && waitingForLastCarsToLeave) {
-            NextLight();
+            tl1.allow = !savedState[0];
+            tl2.allow = !savedState[1];
+            tl3.allow = !savedState[2];
+            tl4.allow = !savedState[3];
         }
     }
 }
