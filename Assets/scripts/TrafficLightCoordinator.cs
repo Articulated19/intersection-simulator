@@ -25,7 +25,7 @@ public class TrafficLightCoordinator : MonoBehaviour {
         tl2.allow = true;
         tl4.allow = true;
 
-        InvokeRepeating("nextLight", 70.0f, 70.0f);
+        InvokeRepeating("nextLight", 30.0f, 30.0f);
 
     }
 

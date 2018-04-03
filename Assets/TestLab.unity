@@ -575,25 +575,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carName: North
-  carId: 0
-  priority: 0
-  paths:
-  - {fileID: 966796787}
-  - {fileID: 1078965307}
-  - {fileID: 1122320607}
-  nodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   maxSteerAngle: 45
   turnSpeed: 10
   wheelFL: {fileID: 115838388}
@@ -602,17 +583,6 @@ MonoBehaviour:
   maxBrakeTorque: 750
   currentSpeed: 0
   maximumSpeed: 15
-  intersection: {fileID: 620921996}
-  centerOfMass: {x: 0, y: -2.81, z: 0}
-  trafficLight: {fileID: 852807118}
-  active: 1
-  secondsUntilIntersection: 100
-  onComingCar: {fileID: 1905041633}
-  distanceUntilIntersection: 100
-  inIntersection: 0
-  isWaiting: 0
-  trafficLightOk: 0
-  willTurn: 0
 --- !u!54 &96229823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -782,6 +752,64 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!1 &146017101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 146017103}
+  - component: {fileID: 146017102}
+  - component: {fileID: 146017104}
+  m_Layer: 0
+  m_Name: Intersection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &146017102
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 146017101}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &146017103
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 146017101}
+  m_LocalRotation: {x: -0, y: -0.0013090669, z: -0, w: 0.99999917}
+  m_LocalPosition: {x: -14.879992, y: 0, z: -2.7999985}
+  m_LocalScale: {x: 9.13, y: 1, z: 8.8}
+  m_Children:
+  - {fileID: 1802015739}
+  - {fileID: 1788019919}
+  - {fileID: 1023031019}
+  - {fileID: 277826157}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &146017104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 146017101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d720255ddc7b48d4b337bf94caf5248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carObjects: []
 --- !u!4 &154567120 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 230fd40228ed76a4384f0dbd5443e76a, type: 3}
@@ -1668,6 +1696,59 @@ Transform:
   m_Father: {fileID: 966796787}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &277826156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 277826157}
+  - component: {fileID: 277826158}
+  - component: {fileID: 277826159}
+  m_Layer: 0
+  m_Name: westEntrance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &277826157
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277826156}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.919, y: 0, z: -0.196}
+  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_Children: []
+  m_Father: {fileID: 146017103}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &277826158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277826156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &277826159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277826156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e1984a305f046bdba4bb13aa6bcdf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &287617280
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,25 +1883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carName: East
-  carId: 1
-  priority: 5
-  paths:
-  - {fileID: 431777859}
-  - {fileID: 166329597}
-  - {fileID: 676227179}
-  nodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   maxSteerAngle: 45
   turnSpeed: 10
   wheelFL: {fileID: 864328006}
@@ -1829,17 +1891,6 @@ MonoBehaviour:
   maxBrakeTorque: 750
   currentSpeed: 0
   maximumSpeed: 15
-  intersection: {fileID: 620921996}
-  centerOfMass: {x: 0, y: -2.81, z: 0}
-  trafficLight: {fileID: 2128853233}
-  active: 1
-  secondsUntilIntersection: 100
-  onComingCar: {fileID: 1238373784}
-  distanceUntilIntersection: 100
-  inIntersection: 0
-  isWaiting: 0
-  trafficLightOk: 0
-  willTurn: 0
 --- !u!54 &299931258
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2026,6 +2077,8 @@ GameObject:
   m_Component:
   - component: {fileID: 325769416}
   - component: {fileID: 325769417}
+  - component: {fileID: 325769419}
+  - component: {fileID: 325769418}
   m_Layer: 0
   m_Name: BigTruck02
   m_TagString: Untagged
@@ -2063,6 +2116,45 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &325769418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 325769415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3ff5af79d2348f39cd2e12fc53b205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carId: 1
+  carName: East
+  priority: 10
+  isGivingWay: 0
+  justOutsideIntersection: 0
+  inIntersection: 0
+  onComingCar: {fileID: 1798710051}
+  intersection: {fileID: 146017101}
+  intersectionEntrance: {fileID: 1788019918}
+  trafficLightObj: {fileID: 2128853233}
+--- !u!114 &325769419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 325769415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212b39c4f9a3844e4b08b54b7e8b7e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paths:
+  - {fileID: 431777859}
+  - {fileID: 166329597}
+  - {fileID: 676227179}
+  nodes: []
+  willTurn: 0
+  currentNode: 0
 --- !u!1 &351923537
 GameObject:
   m_ObjectHideFlags: 0
@@ -3967,6 +4059,8 @@ GameObject:
   m_Component:
   - component: {fileID: 543568758}
   - component: {fileID: 543568757}
+  - component: {fileID: 543568760}
+  - component: {fileID: 543568759}
   m_Layer: 0
   m_Name: BigTruck01
   m_TagString: Untagged
@@ -4004,6 +4098,45 @@ Transform:
   m_Father: {fileID: 687160181}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &543568759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 543568756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212b39c4f9a3844e4b08b54b7e8b7e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paths:
+  - {fileID: 966796787}
+  - {fileID: 1078965307}
+  - {fileID: 1122320607}
+  nodes: []
+  willTurn: 0
+  currentNode: 0
+--- !u!114 &543568760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 543568756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3ff5af79d2348f39cd2e12fc53b205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carId: 0
+  carName: North
+  priority: 22
+  isGivingWay: 0
+  justOutsideIntersection: 0
+  inIntersection: 0
+  onComingCar: {fileID: 1085417116}
+  intersection: {fileID: 146017101}
+  intersectionEntrance: {fileID: 1802015738}
+  trafficLightObj: {fileID: 852807118}
 --- !u!1 &549254761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4447,82 +4580,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1486214723}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &620921996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 620921999}
-  - component: {fileID: 620921998}
-  - component: {fileID: 620921997}
-  m_Layer: 0
-  m_Name: Intersection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &620921997
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 620921996}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!64 &620921998
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 620921996}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &620921999
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 620921996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.88, y: 0, z: -2.8}
-  m_LocalScale: {x: 0.87, y: 1, z: 0.86}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &625929050
 GameObject:
@@ -6806,6 +6863,59 @@ Transform:
   m_Father: {fileID: 1651841948}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1023031018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1023031019}
+  - component: {fileID: 1023031020}
+  - component: {fileID: 1023031021}
+  m_Layer: 0
+  m_Name: southEntrance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1023031019
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1023031018}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.172, y: 0, z: -0.907}
+  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_Children: []
+  m_Father: {fileID: 146017103}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1023031020
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1023031018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1023031021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1023031018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e1984a305f046bdba4bb13aa6bcdf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1035948679
 GameObject:
   m_ObjectHideFlags: 0
@@ -7404,6 +7514,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1085417117}
   - component: {fileID: 1085417118}
+  - component: {fileID: 1085417120}
+  - component: {fileID: 1085417119}
   m_Layer: 0
   m_Name: BigTruck03
   m_TagString: Untagged
@@ -7441,6 +7553,45 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1085417119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1085417116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3ff5af79d2348f39cd2e12fc53b205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carId: 2
+  carName: South
+  priority: 45
+  isGivingWay: 0
+  justOutsideIntersection: 0
+  inIntersection: 0
+  onComingCar: {fileID: 543568756}
+  intersection: {fileID: 146017101}
+  intersectionEntrance: {fileID: 1023031018}
+  trafficLightObj: {fileID: 1066704865}
+--- !u!114 &1085417120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1085417116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212b39c4f9a3844e4b08b54b7e8b7e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paths:
+  - {fileID: 1651841948}
+  - {fileID: 1484942788}
+  - {fileID: 1486214723}
+  nodes: []
+  willTurn: 0
+  currentNode: 0
 --- !u!1 &1093166726
 GameObject:
   m_ObjectHideFlags: 0
@@ -8119,25 +8270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carName: West
-  carId: 3
-  priority: 10
-  paths:
-  - {fileID: 184118854}
-  - {fileID: 488904136}
-  - {fileID: 1609011437}
-  nodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   maxSteerAngle: 45
   turnSpeed: 10
   wheelFL: {fileID: 449022186}
@@ -8146,17 +8278,6 @@ MonoBehaviour:
   maxBrakeTorque: 750
   currentSpeed: 0
   maximumSpeed: 15
-  intersection: {fileID: 620921996}
-  centerOfMass: {x: 0, y: -2.81, z: 0}
-  trafficLight: {fileID: 1800750598}
-  active: 1
-  secondsUntilIntersection: 100
-  onComingCar: {fileID: 299931252}
-  distanceUntilIntersection: 100
-  inIntersection: 0
-  isWaiting: 0
-  trafficLightOk: 0
-  willTurn: 0
 --- !u!54 &1238373790
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11414,6 +11535,59 @@ Transform:
   m_Father: {fileID: 431777859}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1788019918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1788019919}
+  - component: {fileID: 1788019920}
+  - component: {fileID: 1788019921}
+  m_Layer: 0
+  m_Name: eastEntrance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1788019919
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788019918}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.906, y: 0, z: 0.228}
+  m_LocalScale: {x: 1.1876099, y: 1, z: 0.32176813}
+  m_Children: []
+  m_Father: {fileID: 146017103}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1788019920
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788019918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1788019921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1788019918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e1984a305f046bdba4bb13aa6bcdf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1795853501
 GameObject:
   m_ObjectHideFlags: 0
@@ -11507,6 +11681,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1798710052}
   - component: {fileID: 1798710053}
+  - component: {fileID: 1798710055}
+  - component: {fileID: 1798710054}
   m_Layer: 0
   m_Name: BigTruck04
   m_TagString: Untagged
@@ -11544,6 +11720,45 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1798710054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798710051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3ff5af79d2348f39cd2e12fc53b205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carId: 3
+  carName: West
+  priority: 6
+  isGivingWay: 0
+  justOutsideIntersection: 0
+  inIntersection: 0
+  onComingCar: {fileID: 325769415}
+  intersection: {fileID: 146017101}
+  intersectionEntrance: {fileID: 277826156}
+  trafficLightObj: {fileID: 1800750598}
+--- !u!114 &1798710055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798710051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212b39c4f9a3844e4b08b54b7e8b7e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paths:
+  - {fileID: 184118854}
+  - {fileID: 488904136}
+  - {fileID: 1609011437}
+  nodes: []
+  willTurn: 0
+  currentNode: 0
 --- !u!1 &1799592349
 GameObject:
   m_ObjectHideFlags: 0
@@ -11653,6 +11868,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allow: 0
+--- !u!1 &1802015738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1802015739}
+  - component: {fileID: 1802015740}
+  - component: {fileID: 1802015741}
+  - component: {fileID: 1802015742}
+  m_Layer: 0
+  m_Name: northEntrance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1802015739
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802015738}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.222, y: 0, z: 0.926}
+  m_LocalScale: {x: 1.1876094, y: 1, z: 0.32176816}
+  m_Children: []
+  m_Father: {fileID: 146017103}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1802015740
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802015738}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1802015741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802015738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e1984a305f046bdba4bb13aa6bcdf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &1802015742
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802015738}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1803684396
 GameObject:
   m_ObjectHideFlags: 0
@@ -12446,25 +12730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12d89841a3364ded90f98883ae03da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carName: South
-  carId: 2
-  priority: 10
-  paths:
-  - {fileID: 1651841948}
-  - {fileID: 1484942788}
-  - {fileID: 1486214723}
-  nodes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   maxSteerAngle: 45
   turnSpeed: 10
   wheelFL: {fileID: 566174242}
@@ -12473,17 +12738,6 @@ MonoBehaviour:
   maxBrakeTorque: 750
   currentSpeed: 0
   maximumSpeed: 15
-  intersection: {fileID: 620921996}
-  centerOfMass: {x: 0, y: -2.81, z: 0}
-  trafficLight: {fileID: 1066704865}
-  active: 1
-  secondsUntilIntersection: 100
-  onComingCar: {fileID: 96229817}
-  distanceUntilIntersection: 100
-  inIntersection: 0
-  isWaiting: 0
-  trafficLightOk: 0
-  willTurn: 0
 --- !u!54 &1905041639
 Rigidbody:
   m_ObjectHideFlags: 0
