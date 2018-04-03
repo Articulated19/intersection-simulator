@@ -118,7 +118,10 @@ public class CarController : MonoBehaviour {
     }
 
     private void HandlePathEndReached(int carId) {
-        reachedEndOfPath |= carId == this.carId;
+        if(carId == this.carId) {
+            reachedEndOfPath = true;
+            Destroy(transform.gameObject);
+        }
     }
 
     public GameObject getIntersection() {
